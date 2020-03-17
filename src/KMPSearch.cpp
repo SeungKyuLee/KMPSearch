@@ -42,18 +42,18 @@ void calcPi(const string& N, int* pi)
 		for (int i = 0; i + begin < m; ++i)
 		{
 			if (N[begin + i] != N[i]) break;
-			// i+1 ±ÛÀÚ°¡ ´ëÀÀ
+			// i+1 ê¸€ìê°€ ëŒ€ì‘
 			pi[begin + i] = max(pi[begin + i], i + 1);
 		}
 	}
-#elif METHOD_2
+#elif defined(METHOD_2)
 	int m = N.size();
 	for (int begin = 1; begin < m; ++begin)
 	{
 		for (int i = 0; (i + begin) < m; ++i)
 		{
 			if (N[begin + i] != N[i]) break;
-			/* ±âÁ¸ pi °ª °»½Å */
+			/* ê¸°ì¡´ pi ê°’ ê°±ì‹  */
 			pi[begin + i] = max(pi[begin + i], i + 1);
 		}
 	}
@@ -66,11 +66,11 @@ void calcPi(const string& N, int* pi)
 		if (N[begin + matched] == N[matched])
 		{
 			++matched;
-			pi[begin + matched - 1] = matched;/* ¸ÅÄªÀÌ ÀÌ·ç¾îÁú ¶§¸¶´Ù pi value ¼öÁ¤ */
+			pi[begin + matched - 1] = matched;/* ë§¤ì¹­ì´ ì´ë£¨ì–´ì§ˆ ë•Œë§ˆë‹¤ pi value ìˆ˜ì • */
 		}
 		else
 		{
-			if (matched == 0) /* ÀÏÄ¡ÇÏ´Â °ÍÀÌ ¾ø´Â °æ¿ì */
+			if (matched == 0) /* ì¼ì¹˜í•˜ëŠ” ê²ƒì´ ì—†ëŠ” ê²½ìš° */
 				++begin;
 			else
 			{
@@ -114,7 +114,7 @@ vector<int> kmpAlgorithm(const string& H, const string& N, int* pi)
 			else
 			{
 				begin += matched - pi[matched - 1];
-				//beginÀ» ¿Å°Üµµ pi[matched-1] ¸¸Å­Àº ÀÏÄ¡ÇÏ´Ï±ñ matched¸¦ Á¢µÎ, Á¢¹Ì»ç°¡ µÇ´Â string ±æÀÌ¸¸Å­ ´õ ¿òÁ÷¿©µµ ±¦ÂúÀ½
+				//beginì„ ì˜®ê²¨ë„ pi[matched-1] ë§Œí¼ì€ ì¼ì¹˜í•˜ë‹ˆê¹ matchedë¥¼ ì ‘ë‘, ì ‘ë¯¸ì‚¬ê°€ ë˜ëŠ” string ê¸¸ì´ë§Œí¼ ë” ì›€ì§ì—¬ë„ ê´œì°®ìŒ
 				matched = pi[matched - 1];
 			}
 		}
